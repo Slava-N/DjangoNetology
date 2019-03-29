@@ -6,6 +6,19 @@
     <div class="container">
         <div class="header">
             <h1>Сравнение телефонов</h1>
+                        <div class="row">
+            {% for phone in phones_data %}
+                <div class="col-sm-4 panel-pad-10 card">
+                        <!--# name, price, screen_size, anouncement_date, camera, bluetooth, ozu-->
+                        <h5 class="card-title">{{ phone.name }}</h5>
+                        <p> Цена: {{ phone.price }}</p>
+                        <p> Дата выхода: {{ phone.anouncement_date }}</p>
+                        <p> Камера: {{ phone.camera }}</p>
+                        <p> Память: {{ phone.ozu }}</p>
+                        <a href={{ phone.url }} class="btn btn-primary">Купить</a>
+                </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

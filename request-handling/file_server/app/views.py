@@ -24,7 +24,6 @@ class FileList(TemplateView):
         # Реализуйте алгоритм подготавливающий контекстные данные для шаблона по примеру:
         files_names = os.listdir(FILES_PATH)
 
-        date
 
 
         files = []

@@ -7,7 +7,7 @@ register = template.Library()
 def heatmap(value):
     # print(float(value))
     try:
-        intencivity = -math.log((abs(float(value))), 6) * 255
+        intencivity = -math.log((abs(float(value))), 10) * 255
         color_schemes = [[255,intencivity,intencivity],[intencivity,255,intencivity],[255,255,255]]
         if float(value) > 0:
             base_color = color_schemes[0]

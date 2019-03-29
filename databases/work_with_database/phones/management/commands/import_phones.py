@@ -16,5 +16,16 @@ class Command(BaseCommand):
             next(phone_reader)
 
             for line in phone_reader:
+                print(line, '\n', line[3])
                 # TODO: Добавьте сохранение модели
-                pass
+                # obj, created = Phone.objects.get_or_create(
+                # id=line[0],
+                # name = line[1],
+                # price = line[3],
+                # image = line[2],
+                # release_date = line[4],
+                # lte_exists = line[5],
+                # # slug = line[6]
+                # )
+
+            pass

@@ -1,0 +1,17 @@
+
+
+        <div>
+            <h5>Перейти на другую дату:</h5>
+            {% if previous_date %}
+                <span>
+                <a href="/books/{{previous_date|date:'Y-m-d' }}/">
+                    {{previous_date}}
+                </span>
+            {% endif %}
+            {% if next_date %}
+            <span>
+                <a href="/books/{{ next_date|date:'Y-m-d' }}/">
+                    {{next_date}}
+            </span>
+            {% endif %}
+        </div>

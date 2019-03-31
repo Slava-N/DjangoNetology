@@ -7,6 +7,7 @@
         <div class="header">
             <h1><a href="/books">Каталог</a></h1>
         </div>
+
         <div class="row">
             {% for book in books %}
             <div class="book col-md-4">
@@ -21,6 +22,9 @@
                 <!--<p>Дата публикации: 2015-03-11</p>-->
             <!--</div>-->
         </div>
+        {% if previous_date or next_date  %}
+            {%include 'books/links.html'%}
+        {% endif %}
 
-    </div>
+    </div> 
 {% endblock %}

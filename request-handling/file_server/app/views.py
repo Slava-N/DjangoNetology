@@ -5,64 +5,43 @@ import os
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from .settings import FILES_PATH
-
-
-
-# def test_function(request):
-#     # x_var = request.GET.get('s')
-#     # print(request.GET)
-#
-#     return HttpResponse(x_var)
-
+from django.conf import settings
 
 class FileList(TemplateView):
     template_name = 'index.html'
-    # template_name = 'file_content.html'
-    
+
     def get_context_data(self, date=None):
-        # Реализуйте алгоритм подготавливающий контекстные данные для шаблона по примеру:
-        files_names = os.listdir(FILES_PATH)
-
-
-
+        files_names = os.listdir(settings.FILES_PATH)
+        print(date)
         files = []
 
         for file in files_names:
-            file_desc = (os.stat(os.path.join(FILES_PATH, file)))
+            file_desc = (os.stat(os.path.join(settings.FILES_PATH, file)))
             file_data = {}
             file_data['name'] = file
             file_data['ctime'] = dt.fromtimestamp(file_desc.st_ctime)
             file_data['mtime'] = dt.fromtimestamp(file_desc.st_mtime)
 
             if date is not None:
-                # print(dt.fromtimestamp(file_desc.st_mtime).strftime("%Y-%m-%d"))
+                try:
+                    date_formatted = dt.strptime(date, "%Y-%m-%d")
+                    if file_data['mtime'].date() == date_formatted.date():
+                        files.append(file_data)
 
-                if dt.fromtimestamp(file_desc.st_mtime).strftime("%Y-%m-%d") == date:
-                    files.append(file_data)
-                # print('sdf')
-            else:
-                files.append(file_data)
+                except:
+                    pass
 
         return {
-            'files': files,
-            #     [
-            #     {'name': 'file_name_1.txt',
-            #      'ctime': datetime.datetime(2018, 1, 1),
-            #      'mtime': datetime.datetime(2018, 1, 2)}
-            # ],
-            'date': datetime.date(2018, 1, 1)  # Этот параметр необязательный
+            'files': files
         }
 
 def file_content(request, name='none'):
-    files = os.listdir(FILES_PATH)
-    # print(files)
-    with open(os.path.join(FILES_PATH, name), encoding='utf8') as file:
-        file_data = file.read()
-    # file = os.read(os.path.join(FILES_PATH, name), encoding='utf8')
-    # print()
-    # print(file_data)
-    # Реализуйте алгоритм подготавливающий контекстные данные для шаблона по примеру:
+    try:
+        with open(os.path.join(settings.FILES_PATH, name), encoding='utf8') as file:
+            file_data = file.read()
+    except FileNotFoundError:
+        pass
+
     return render(
         request,
         'file_content.html',

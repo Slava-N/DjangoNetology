@@ -19,8 +19,8 @@
         </form>
     </div>
     <div class="left-margin width300">
-        {% if result %}
-            <p>Сумма: {{common_result}}, в месяц: {{ result }}</p>
+        {% if total_payment %}
+            <p>Сумма: {{ total_payment }}, в месяц: {{ monthly_payment }}</p>
         {% endif %}
     </div>
 </body>

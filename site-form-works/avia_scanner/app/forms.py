@@ -5,4 +5,5 @@ from .models import City
 
 
 class SearchTicket(forms.Form):
-    pass
+    departure_city = forms.CharField(label='Город отправления', widget=AjaxInputWidget)
+    arrival_city = forms.ModelChoiceField(queryset=City.objects.all(), label='Город прибытия')

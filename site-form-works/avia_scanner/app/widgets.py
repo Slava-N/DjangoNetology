@@ -5,7 +5,8 @@ class AjaxInputWidget(TextInput):
     template_name = 'widget/ajax_input_widget.html'
     url = ''
 
-    def __init__(self, url, attrs=None):
+    def __init__(self, attrs=None):
+        url = 'api/city_ajax'
         """url: путь к ajax API которое будет возвращать список городов для подстановки"""
         super().__init__(attrs)
         self.url = url

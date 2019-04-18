@@ -91,6 +91,8 @@ TEMPLATES = [
     },
 ]
 
+# AUTH_USER_MODEL = 'articles.Profile'
+
 WSGI_APPLICATION = 'main.wsgi.application'
 
 # Internationalization
@@ -99,6 +101,8 @@ WSGI_APPLICATION = 'main.wsgi.application'
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 USE_I18N = True
 

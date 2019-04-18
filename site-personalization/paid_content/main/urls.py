@@ -17,10 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
-import views
+# import views
+from articles import views
+from articles.views import ArticleView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('articles/', views.show_articles),
-    url(r'^articles/(?P<id>[0-9]+)/', views.show_article),
+    path('articles/', ArticleView.as_view()),
+    url(r'^articles/(?P<pk>[0-9]+)/', views.show_article),
 ]

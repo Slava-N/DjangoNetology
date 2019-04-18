@@ -8,5 +8,14 @@
         <div class="header">
             <h1>Игра "Угадай число"</h1>
         </div>
+        <div>
+            <form action="/guess_number/" method="post">
+                <label for="guess_number">Угадайте загаданное число: </label>
+                <input id="guess_number" type="text" name="guess_number" value="{{ hidden_number }}">
+                <input type="submit" value="OK">
+            </form>
+        </div>
+
+
     </div>
 {% endblock %}

@@ -8,12 +8,12 @@ class Player(models.Model):
 class Game(models.Model):
     players = models.ManyToManyField(Player, through='PlayerGameInfo')
     secret_number = models.IntegerField(default=0)
-    finished = models.BooleanField(default=False)
+    active = models.BooleanField(default=False)
     game_id = models.IntegerField(default = 0)
 
 class PlayerGameInfo(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, default=0)
     game = models.ForeignKey(Game, on_delete=models.CASCADE, default=0)
-    guess = models.IntegerField(default=0)
+    guess = models.BooleanField(default=0)
     time = models.DateTimeField(default=datetime.now())
 

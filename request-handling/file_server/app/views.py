@@ -43,7 +43,7 @@ def file_content(request, name='none'):
             file_data = file.read()
     except FileNotFoundError:
         raise Http404('Файл не ннайден')
-        pass
+    
 
     return render(
         request,

@@ -1,4 +1,6 @@
 import datetime
+from django.http import Http404
+
 
 from datetime import datetime as dt
 import os
@@ -40,6 +42,7 @@ def file_content(request, name='none'):
         with open(os.path.join(settings.FILES_PATH, name), encoding='utf8') as file:
             file_data = file.read()
     except FileNotFoundError:
+        raise Http404('Файл не ннайден')
         pass
 
     return render(

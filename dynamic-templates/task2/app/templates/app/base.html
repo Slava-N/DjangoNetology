@@ -18,9 +18,9 @@
         <a href="{% url 'home' %}" class="brand-logo">
         Компьютеры</a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'examples' %}">Примеры</a></li>
-          <li><a href="{% url 'contacts' %}">Контакты</a></li>
-          <li><a href="{% url 'about' %}">О проекте</a></li>
+          <li {% if request.path == '/examples/' %} class='active' {% endif %} ><a href="{% url 'examples' %}">Примеры</a></li>
+          <li{% if request.path == '/contacts/' %} class='active' {% endif %}><a href="{% url 'contacts' %}">Контакты</a></li>
+          <li{% if request.path == '/about/' %} class='active' {% endif %}><a href="{% url 'about' %}">О проекте</a></li>
         </ul>
       </div>
     </nav>
@@ -30,5 +30,7 @@
         {% endblock %}
     </div>
 
+
   </body>
+
 </html>

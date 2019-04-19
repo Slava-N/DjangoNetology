@@ -13,27 +13,23 @@ def format_date(value):
 
     time_delta = ( datetime.now().timestamp() - value ) / 60
 
-    value_new = time_delta
-    value_new = {
-               time_delta < 10: 'Только что',
-        10 <= time_delta < 60 * 24:   '{0:0.0f} часов назад'.format(time_delta / 60),
-          60 * 24 <= time_delta :  datetime.date(datetime.fromtimestamp(value))
-       }[True]
+    if time_delta < 10:
+        value_new = 'Только что'
+    elif time_delta < 60 * 24:
+        value_new = '{0:0.0f} часов назад'.format(time_delta / 60)
+    else:
+        value_new = datetime.date(datetime.fromtimestamp(value))
     return value_new
-
-
-# необходимо добавить фильтр для поля `score`
-
 
 @register.filter
 def popularity(value):
 
-
-    value_new = {
-        value < -5 : 'Очень плохо',
-        -5 <= value <5: 'Нейтрально',
-        5 <= value: 'Очень хорошо'
-    }[True]
+    if value < -5:
+        value_new = 'Очень плохо'
+    elif value < 5:
+        value_new = 'Нейтрально'
+    else:
+        value_new = 'Очень хорошо'
 
     return value_new
 
@@ -41,12 +37,13 @@ def popularity(value):
 
 @register.filter
 def format_num_comments(value):
-    # Ваш код
-    value_new = {
-        value == 0 : 'Оставьте комментарий',
-        0 < value <= 50: value,
-        50 < value: '50+'
-    }[True]
+
+    if value == 0:
+        value_new = 'Оставьте комментарий'
+    elif value <= 50:
+        value_new = value
+    else:
+        value_new = '50+'
 
     return value_new
 

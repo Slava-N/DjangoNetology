@@ -32,7 +32,8 @@ class ExamplesView(TemplateView):
             'img': 'imac.jpg'
         }]
         context = {
-            'items': items
+            'items': items,
+
         }
         return render(request, self.template_name,
                       context)

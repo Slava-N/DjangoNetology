@@ -3,17 +3,16 @@ from django.db import models
 from datetime import datetime
 
 class Player(models.Model):
-    player_id = models.IntegerField(default=0)
+    session_id = models.CharField(max_length=256)
 
 class Game(models.Model):
-    players = models.ManyToManyField(Player, through='PlayerGameInfo')
     secret_number = models.IntegerField(default=0)
     active = models.BooleanField(default=False)
-    game_id = models.IntegerField(default = 0)
+    creator = models.ForeignKey(Player, on_delete=models.CASCADE)
 
 class PlayerGameInfo(models.Model):
-    player = models.ForeignKey(Player, on_delete=models.CASCADE, default=0)
     game = models.ForeignKey(Game, on_delete=models.CASCADE, default=0)
     guess = models.BooleanField(default=0)
     time = models.DateTimeField(default=datetime.now())
+    # player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
